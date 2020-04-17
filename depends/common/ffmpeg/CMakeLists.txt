@@ -137,7 +137,11 @@ if(NOT WIN32)
                         --enable-gnutls
                         --enable-libzvbi
                         ${STANDARD_CONF}
-                        ${EXTRA_CONF})
+                        ${EXTRA_CONF} &&
+                         echo "---------------------------------START" &&
+                         cat ${CMAKE_BINARY_DIR}/ffmpeg-prefix/src/ffmpeg-build/ffbuild/config.log &&
+                         echo "----------------------------------END" &&
+                         exit 1)
 
   if(CORE_SYSTEM_NAME STREQUAL darwin_embedded)
     externalproject_add_step(ffmpeg
@@ -181,14 +185,14 @@ else()
     list(APPEND EXTRA_CFLAGS -DWINAPI_FAMILY=WINAPI_FAMILY_APP -D_WIN32_WINNT=0x0A00)
     list(APPEND EXTRA_LDFLAGS -APPCONTAINER WindowsApp.lib)
   endif()
-  if(CMAKE_BUILD_TYPE STREQUAL Release)
-    list(APPEND EXTRA_CFLAGS -MD -wd4828)
-    list(APPEND EXTRA_CXXFLAGS -MD -wd4828)
-  else()
-    list(APPEND EXTRA_CFLAGS -MDd)
-    list(APPEND EXTRA_CXXFLAGS -MDd)
-    list(APPEND EXTRA_LDFLAGS -NODEFAULTLIB:libcmt)
-  endif()
+#  if(CMAKE_BUILD_TYPE STREQUAL Release)
+#    list(APPEND EXTRA_CFLAGS -MD -wd4828)
+#    list(APPEND EXTRA_CXXFLAGS -MD -wd4828)
+#  else()
+#    list(APPEND EXTRA_CFLAGS -MDd)
+#    list(APPEND EXTRA_CXXFLAGS -MDd)
+#    list(APPEND EXTRA_LDFLAGS -NODEFAULTLIB:libcmt)
+#  endif()
 
   include(CheckSymbolExists)
   check_symbol_exists(_X86_ "Windows.h" _X86_)
