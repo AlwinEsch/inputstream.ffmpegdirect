@@ -34,7 +34,7 @@ list(APPEND STANDARD_CONF --extra-version=kodi-${FFMPEG_VER}
                           --enable-encoder=png
                           --enable-encoder=mjpeg
                           --enable-demuxer=dash
-                          --enable-libxml2
+#                          --enable-libxml2
                           --enable-zlib
                           --enable-static)
 
