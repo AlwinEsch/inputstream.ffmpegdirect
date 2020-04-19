@@ -174,11 +174,11 @@ else()
   set(EXTRA_LDFLAGS ${FLAGS})
 
   list(APPEND EXTRA_CFLAGS -I${CMAKE_INSTALL_PREFIX}/include
-                           -I${CMAKE_INSTALL_PREFIX}/include/libxml2)
-#                           -FS)
+                           -I${CMAKE_INSTALL_PREFIX}/include/libxml2
+                           -FS)
   list(APPEND EXTRA_CXXFLAGS -I${CMAKE_INSTALL_PREFIX}/include
-                             -I${CMAKE_INSTALL_PREFIX}/include/libxml2)
-#                             -FS)
+                             -I${CMAKE_INSTALL_PREFIX}/include/libxml2
+                             -FS)
   list(APPEND EXTRA_LDFLAGS -LIBPATH:${CMAKE_INSTALL_PREFIX}/lib)
   if(CMAKE_SYSTEM_NAME STREQUAL WindowsStore)
     list(APPEND EXTRA_CONF --enable-cross-compile)
